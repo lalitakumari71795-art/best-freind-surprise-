@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Best Friend Day Cutie ❤️</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:linear-gradient(-45deg,#ff9a9e,#fad0c4,#fbc2eb,#a18cd1);
+background-size:400% 400%;
+animation:bg 10s ease infinite;
+overflow-x:hidden;
+color:white;
+}
+
+@keyframes bg{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+.page{
+min-height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:30px;
+}
+
+.card{
+background:rgba(255,255,255,0.15);
+backdrop-filter:blur(10px);
+padding:25px;
+border-radius:25px;
+max-width:800px;
+width:95%;
+box-shadow:0 10px 25px rgba(0,0,0,.2);
+}
+
+h1{
+font-size:2.5rem;
+margin-bottom:15px;
+}
+
+h2{
+margin-bottom:15px;
+}
+
+p{
+line-height:1.8;
+font-size:18px;
+}
+
+.btn{
+margin-top:20px;
+padding:12px 25px;
+border:none;
+border-radius:30px;
+background:white;
+color:#ff4d6d;
+font-weight:bold;
+cursor:pointer;
+font-size:16px;
+}
+
+.hidden{
+display:none;
+}
+
+.qualities{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:15px;
+margin-top:20px;
+}
+
+.box{
+background:rgba(255,255,255,0.2);
+padding:15px;
+border-radius:15px;
+font-size:18px;
+}
+
+canvas{
+position:fixed;
+top:0;
+left:0;
+pointer-events:none;
+}
+
+footer{
+margin-top:25px;
+font-size:14px;
+opacity:.8;
+}
+</style>
+
+</head>
+
+<body>
+
+<canvas id="confetti"></canvas>
+
+<!-- PAGE 1 -->
+
+<section class="page" id="page1">
+<div class="card">
+<h1>💖 Happy Best Friend Day 💖</h1>
+<h2>For Kritika (Cutie) 🌸</h2>
+
+<p>
+A small website made specially for someone amazing.
+</p>
+
+<button class="btn" onclick="nextPage(2)">
+Enter ❤️
+</button>
+</div>
+</section>
+
+<!-- PAGE 2 -->
+
+<section class="page hidden" id="page2">
+<div class="card">
+<h1>🌸 About Kritika 🌸</h1>
+
+<div class="qualities">
+<div class="box">😊 Beautiful Smile</div>
+<div class="box">💖 Kind Heart</div>
+<div class="box">✨ Positive Vibes</div>
+<div class="box">🌟 Amazing Friend</div>
+</div>
+
+<p style="margin-top:20px;">
+Some people make life brighter simply by being part of it.
+Kritika is one of those people.
+</p>
+
+<button class="btn" onclick="nextPage(3)">
+Next ➜
+</button>
+</div>
+</section>
+
+<!-- PAGE 3 -->
+
+<section class="page hidden" id="page3">
+<div class="card">
+<h1>💌 Special Message 💌</h1>
+
+<p>
+Dear Kritika,
+
+Thank you for being such an amazing friend.
+
+Every conversation, every laugh and every memory becomes special because of you.
+
+Your kindness, positivity and smile make people feel comfortable around you.
+
+No matter how much time passes, you'll always be my favorite Cutie.
+
+Happy Best Friend Day ❤️
+
+✨ Best Friends Forever ✨
+
+</p>
+
+<button class="btn" onclick="celebrate()">
+🎉 Celebrate
+</button>
+
+<footer>
+Made with ❤️ for Cutie
+</footer>
+</div>
+</section>
+
+<script>
+function nextPage(page){
+document.querySelectorAll(".page").forEach(p=>{
+p.classList.add("hidden");
+});
+document.getElementById("page"+page).classList.remove("hidden");
+window.scrollTo(0,0);
+}
+
+const canvas=document.getElementById("confetti");
+const ctx=canvas.getContext("2d");
+
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+let particles=[];
+
+function celebrate(){
+for(let i=0;i<300;i++){
+particles.push({
+x:Math.random()*canvas.width,
+y:-20,
+size:Math.random()*8+4,
+speed:Math.random()*4+2,
+color:`hsl(${Math.random()*360},100%,60%)`
+});
+}
+}
+
+function animate(){
+requestAnimationFrame(animate);
+ctx.clearRect(0,0,canvas.width,canvas.height);
+
+particles.forEach((p,index)=>{
+p.y+=p.speed;
+ctx.fillStyle=p.color;
+ctx.fillRect(p.x,p.y,p.size,p.size);
+
+if(p.y>canvas.height){
+particles.splice(index,1);
+}
+});
+}
+
+animate();
+
+window.addEventListener("resize",()=>{
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+});
+</script>
+
+</body>
+</html>
